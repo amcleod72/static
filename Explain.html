@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PI Explain</title>
+  <style> 
+  div.loader {
+	  width: 50%;
+	  margin: 0 auto;
+  }
+  
+  div.alert{
+    box-shadow: 0 3px 0 0 #e9e9ea;
+  	padding: 15px 20px 15px 20px;
+  	border: 1px solid #ccc;
+  }
+  
+  .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+      max-width: 200px;
+  }
+  
+  .t-box {
+      border: 1px solid #b6c7d3;
+      padding: 15px 12px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      background: #f9fbfd;
+      background: -moz-linear-gradient(top,#f9fbfd 90%,#e4eaef 100%);
+      background: -webkit-gradient(linear,left top,left bottom,color-stop(90%,#f9fbfd),color-stop(100%,#e4eaef));
+      background: -webkit-linear-gradient(top,#f9fbfd 90%,#e4eaef 100%);
+      background: -o-linear-gradient(top,#f9fbfd 90%,#e4eaef 100%);
+      /background: -ms-linear-gradient(top,#f9fbfd 90%,#e4eaef 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfd',endColorstr='#e4eaef',GradientType=0 );
+      background: linear-gradient(top,#f9fbfd 90%,#e4eaef 100%);
+  }
+  
+  .mobile-message-create-template-selector {
+      width: 920px;
+      margin: 50px auto;
+  }
+  
+  .t-item {
+      width: 160px;
+      margin-right: 20px;
+      min-height: 260px;
+      display: inline-block;
+      vertical-align: top;
+  }
+  
+  .t-item-wrapper {
+      padding: 5px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+  }
+  
+  .t-box h1 {
+      color: #4e8abe;
+      margin: 0;
+      font-size: 12px;
+      font-weight: normal;
+      text-align: center;
+  }
+  
+ .t-icon {
+      margin: 10px auto 0;
+      width: 120px;
+      height: 83px;
+      background: url(../images/sprite-message-templates.png) no-repeat 0 0;
+  }
+  </style>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.fuelcdn.com/fuelux/3.13.0/css/fuelux.min.css" rel="stylesheet">
+</head>
+<body class="fuelux">	
+	<div class="container">	
+		<div id="statusmessage" class="alert alert-success alert-normal-success" hidden="hidden">
+			<button type="button" class="close">×</button>
+			<h4>Thank You</h4>
+			<p id="successmessage"></p>
+		</div>
+		<div id="errormessage" class="alert alert-danger alert-normal-danger" hidden="hidden">
+			<button type="button" class="close">×</button>
+			<h4>Error</h4>
+			<p id="errormessage"></p>
+		</div>
+		<div class="page-header">
+  	  		<h1>PI Explain <small>Decipher Recommendations</small></h1>
+		</div>
+		<div class="wizard" data-initialize="wizard" id="myWizard">
+			<div class="steps-container">
+				<ul class="steps">
+					<li data-step="1" data-name="campaign" class="active">
+						<span class="badge">1</span>Type
+						<span class="chevron"></span>
+					</li>
+					<li data-step="2">
+						<span class="badge">2</span>Parameters
+						<span class="chevron"></span>
+					</li>
+					<li data-step="3" data-name="template">
+						<span class="badge">3</span>Explanation
+						<span class="chevron"></span>
+					</li>
+				</ul>
+			</div>
+			<div class="actions">
+				<button type="button" class="btn btn-default btn-prev">
+					<span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+					<button type="button" class="btn btn-primary btn-next" data-last="Explain">Next
+						<span class="glyphicon glyphicon-arrow-right"></span>
+				</button>
+			</div>
+			<div class="step-content">
+				<div class="step-pane active sample-pane alert" data-step="1">
+                    <div class="mobile-message-create-template-selector">
+	                    <div class="t-item ">
+		                    <div class="t-item ">
+			                    <div class="t-item-wrapper">
+    			                    <div class="t-box">
+      	  			                    <h1>Homepage</h1>
+      	  			                    <div class="t-icon outbound"><span class="glyphicon glyphicon-align-left" aria-hidden="true" style="color:cornflowerblue;"></span></div>                    
+    			                    </div>
+    			                    <p align="center">
+      	  			                    View a prediction with no context. For example, when you place a prediction on your home page
+    			                    </p>
+  			                    </div>
+		                    </div>
+	                    </div>
+	                    <div class="t-item ">
+		                    <div class="t-item ">
+  	  		                    <div class="t-item-wrapper">
+    			                    <div class="t-box">
+      		  		                    <h1>Search</h1>
+      		  		                    <div class="t-icon text-response"></div>                    
+    			                    </div>
+    			                    <p align="center">
+      				                    Pass in search terms to view a prediction as it would behave on a search results page
+    			                    </p>
+  	  		                    </div>
+		                    </div>
+	                    </div>
+	                    <div class="t-item ">
+		                    <div class="t-item ">
+    		                    <div class="t-item-wrapper">
+      	  		                    <div class="t-box">
+        			                    <h1>Category</h1>
+        			                    <div class="t-icon text-response"></div>                    
+      	  		                    </div>
+      	  		                    <p align="center">
+        			                    Pass in a category or categories to view a prediction as it would behave on a category view page
+      	  		                    </p>
+    		                    </div>
+		                    </div>
+	                    </div>
+	                    <div class="t-item ">
+		                    <div class="t-item ">
+			                    <div class="t-item-wrapper">
+    			                    <div class="t-box">
+      		  		                    <h1>Cart</h1>
+      				                    <div class="t-icon join-sms-list"></div>                    
+    			                    </div>
+    			                    <p align="center">
+      		  		                    Pass in a skus to view a prediction as it would behave displayed in the cart
+    			                    </p>
+  	  		                    </div>
+		                    </div>
+	                    </div>
+	                    <div class="t-item ">
+		                    <div class="t-item ">
+			                    <div class="t-item-wrapper">
+				                    <div class="t-box">
+      		  		                    <h1>Wishlist</h1>
+      		  		                    <div class="t-icon join-email-list"></div>                    
+    			                    </div>
+    			                    <p align="center">
+      				                    Pass in a skus to view a prediction as it would behave displayed on a wishlist page
+    			                    </p>
+			                    </div>
+		                    </div>
+	                    </div>
+                    </div>
+			</div>
+			<div class="step-pane active sample-pane alert" data-step="2">
+				<form class="form-horizontal" id="frmParams">
+					<fieldset>
+						<div class="form-group">
+							<label for="MemberID" class="control-label col-sm-2">MemberID</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" max-width="250px" id="MemberID" placeholder="Marketing Cloud MID" value="10918985">   
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="prediction" class="control-label col-sm-2">PredictionID</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="prediction" placeholder="Prediction/Recommendation ID" value="Testpage">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="control-label col-sm-2">Email or Hash</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="email" placeholder="Enter Email or Hash" value="fff6b490ca782bcf69fb28608e830dda">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="explain"></label>
+							<div class="text-right col-sm-10">
+								<button type="submit" id="btnExplain" class="btn btn-primary" data-loading-text="Loading..." aria-label="">Explain</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<div id="pnlRecs" class="panel panel-default">
+					<div class="panel-heading">
+    					<h3 class="panel-title">Recommendations</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row" id="recsRow">
+						</div>	  
+					</div>
+  	  			</div>
+  	  			<div id="pnlAffinity" class="panel panel-default">
+	  				<div class="panel-heading">
+		  				<h3 class="panel-title">Affinities</h3>
+	  				</div>
+	  	  			<div class="panel-body">
+		  	  			<div id="affinityChart" style="width: 100%; height: 500px;"></div>
+	  	  			</div>
+  	  			</div>
+  
+  	  			<div id="pnlWeight" class="panel panel-default">
+	  	  			<div class="panel-heading">
+		  	  			<h3 class="panel-title">Weights</h3>
+	  	  			</div>
+	  	  			<div class="panel-body">
+		  	  			<div id="weightChart" style="width: 100%;"></div>
+	  	  			</div>
+  	  			</div>
+  
+  	  			<div id="pnlScenarios" class="panel panel-default">
+	  	  			<div class="panel-heading">
+		  	  			<h3 class="panel-title">Scenarios</h3>
+	  	  			</div>
+	  	  			<div class="panel-body">
+		  	  			<div id="scenariosChart" style="width: 100%;"></div>
+	  	  			</div>
+  	  			</div>
+			</div>
+		</div>
+		</div>	
+	</div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>	  
+    <script>
+	    google.charts.load('current', {'packages':['treemap','corechart','wordtree']});
+
+	    $(document).ready(function(){
+	        $("#pnlRecs").hide();
+		    $("#pnlAffinity").hide();
+		    $("#pnlWeight").hide();
+		    $("#pnlScenarios").hide();
+		
+		    $('#frmParams').on('submit', function(e){
+		        // validation code here
+		 	    e.preventDefault();
+			    loadRecs();
+		    });
+	    });
+	
+	    $(document).on('click', '.close', function () {
+				    $(this).parent().hide();
+	    });
+	
+	    function clearResults(){
+		    $("#recsRow").empty();
+		    $("#pnlRecs").hide();
+		    $("#pnlAffinity").hide();
+		    $("#pnlWeight").hide();
+		    $("#pnlScenarios").hide();
+	    };
+	
+	    function loadRecs(){
+    	    showLoaders();
+		    clearResults();
+		
+		
+		    var url = "http://localhost/proxy.php?url=http://";
+		    url += $('#MemberID').val();
+		    url += ".recs.igodigital.com/a/v2/";
+		    url += $('#MemberID').val();
+		    url += "/";
+		    url += $('#prediction').val();
+		    url += "/recommend.json?email=";
+		    url += $('#email').val();
+		
+		
+	        $.ajax({
+	               url: url,
+	               async: true,
+	               dataType: 'json',
+	               type: "GET",
+				    cache: false,
+	               success: function(data, textStatus, xhr) {
+				       hideLoaders();
+				       $("#pnlRecs").show();
+				   
+				       if (data.status.http_code != 200) {
+				   		    alertError("Error! Status code does not equal 200.")
+				       }
+				       else {
+					       if (data.contents[0].items.length > 0){
+						       var recs = data.contents[0].items;
+						       var i;
+						   
+						       for (i in recs) { 
+						           renderRec(recs[i]);
+						       }
+					       }
+				       }
+	               },
+	               error: function(xhr, textStatus, errorThrown) {
+				       alertError('Sorry, there was an error retrieving recommendations!','error');
+				       hideLoaders();
+	               }
+	           });
+		
+		   
+   		    var url = "http://localhost/proxy.php?url=http://";
+   		    url += $('#MemberID').val();
+   		    url += ".recs.igodigital.com/a/v2/";
+   		    url += $('#MemberID').val();
+   		    url += "/";
+   		    url += $('#prediction').val();
+   		    url += "/recommend.explain?email=";
+   		    url += $('#email').val();	
+		   	   
+   	        $.ajax({
+   	               url: url,
+   	               async: true,
+   	               dataType: 'json',
+   	               type: "GET",
+   				    cache: false,
+   	               success: function(data, textStatus, xhr) {
+   				       hideLoaders();
+				   
+   				       if (data.status.http_code != 200) {
+					       alertError("Error! Status code does not equal 200.");
+   				       }
+   				       else {
+   					       if (!data.contents.filters[0].params[0].affinity){
+   					   		    alertError("Error! Could not locate affinities.");
+   					       }
+						    else
+					       {
+   						       renderAffinity(data.contents.filters[0].params[0].affinity);
+   					       }
+					   
+   					       if (!data.contents.weights){
+   					   		    alertError("Error! Could not locate weights.");
+   					       }
+						    else
+					       {
+   						       renderWeights(data.contents.weights);
+   					       }
+					   
+   					       if (!data.contents.scenarios){
+   					   		    alertError("Error! Could not locate scenarios.");
+   					       }
+						    else
+					       {
+   						       renderScenarios(data.contents.scenarios);
+   					       }
+   				       }
+   	               },
+   	               error: function(xhr, textStatus, errorThrown) {
+   				       alertError('Sorry, there was an error retrieving affinities!','error');
+   				       hideLoaders();
+   	               }
+   	           });			
+	    };
+	
+	
+	    function showLoaders(){
+		    var $loader = $('<div id="loader" class="loader" data-initialize="loader"></div>').insertAfter( "#frmParams" );
+		    $loader.loader('play');	
+		    var $btn = $("#btnExplain").button('loading')
+	    };
+	
+	    function hideLoaders(){
+	       $('#loader').loader('destroy');
+	       $("#btnExplain").button('reset');
+	    };
+
+	    function renderRec(rec){
+		
+		    var html = '<div class="col-sm-2"><div class="thumbnail"><a href="'
+		
+		    if(rec.link){
+			    html += rec.link;
+		    }
+		    else {
+			    html += '#';
+		    }
+		
+		    html += '"><img src="'
+		
+		    if(rec.image_link){
+			    html += rec.image_link;
+		    }
+		    else {
+			    html += '';
+		    }
+		
+		    html += '"></a><div class="caption">';
+		
+		    for(var key in rec) {
+			    if (rec.hasOwnProperty(key) && key != "image_link" && key != "link") {
+				    html += '<p><b>' + key + ':</b> ' + rec[key] + '</p>';
+			    }
+		    }
+		
+		    html += '</div></div></div>'
+		
+		    $(html).appendTo("#recsRow");
+	    };
+	
+	    function renderAffinity(affinity){
+		    $("#pnlAffinity").show();
+		
+		    var weight;
+		    var weightedAffinity;
+		    var label;
+		    var values;
+		
+		    var arr = [["Affinity","Parent","Affinity (size)","Affinity (color)"]];
+		
+		    arr.push(["Affinities",null,0,0]);
+		
+		    for(var key in affinity) {
+			    if (affinity.hasOwnProperty(key)) {
+				    arr.push([key,"Affinities",0,0]);
+				
+				    weight = affinity[key].weight;
+				    values = affinity[key].values;
+				
+				    for(var i in values){
+					    label = values[i].value;
+					    weightedAffinity = values[i].affinity * weight;
+					
+					    arr.push([key + ' - ' + label,key,weightedAffinity,weightedAffinity]);
+				    }
+			    }
+		    }
+		
+		    var data = google.visualization.arrayToDataTable(arr);
+		
+		    tree = new google.visualization.TreeMap(document.getElementById('affinityChart'));
+		
+		    tree.draw(data,{
+		            highlightOnMouseOver: true,
+		            maxDepth: 1,
+		            maxPostDepth: 2,
+		            minHighlightColor: '#8c6bb1',
+		            midHighlightColor: '#9ebcda',
+		            maxHighlightColor: '#edf8fb',
+		            minColor: 'lightgray',
+		            midColor: 'gray',
+		            maxColor: 'orange',
+		            headerHeight: 15,
+		            showScale: true,
+		            height: 500,
+			    fontSize: 16,
+		            useWeightedAverageForAggregation: true
+		          });
+	    };
+	
+	    function renderWeights(weights){
+		    $("#pnlWeight").show();
+				
+		    //var arr = [["List","Weight", {role: 'style'},{type: 'string', role: 'tooltip'}]];
+		    var arr = [["List","Weight", {role: 'style'}]];
+		
+		    var txtColour;
+		    $.each(weights, function(k, v) {
+			    if (v<=5){
+				    txtColour='lightgray';
+			    }
+			    else if (v>=8) {
+				    txtColour='orange';
+			    }
+			    else
+			    {
+				    txtColour='gray';
+			    }
+			
+			    arr.push([k,v,txtColour]);
+		    });
+		
+		    arr.sort(function(a,b) {
+		            return b[1]-a[1]
+		        });
+		
+		    var data = google.visualization.arrayToDataTable(arr);
+		
+		    var view = new google.visualization.DataView(data);
+		    view.setColumns([	0,
+							    1,
+								    {
+									    calc: "stringify",
+									    sourceColumn: 1,
+									    type: "string",
+									    role: "annotation"
+								    },
+							    2]
+		    );
+		
+		    //Calculate height of chart
+		    var height = (35 * arr.length)+50;
+
+		    var options = {
+		        		    height: height,
+						    chartArea: {width: '80%', height: height-50},
+		        		    bar: {groupWidth: "70%"},
+		        		    legend: { position: "none" },
+						    hAxis: 	{
+			            		    minValue: 0,
+			            		    ticks: [0,1,2,3,4,5,6,7,8,9,10]
+			          			    }
+		    };
+		
+		    chart = new google.visualization.BarChart(document.getElementById('weightChart'));
+		    chart.draw(view, options);
+	    };
+	
+	    function renderScenarios(scenarios){
+		    $("#pnlScenarios").show();
+			
+		    var arr = [["id","childlabel","parent","weight",{role: 'style'}]];
+		    arr.push([0,"Scenarios",-1,10,"black"]);
+		
+		    var txtColour = 'black';
+		
+		    var score;
+		    var getmores;
+		    var code;
+		    var sName;
+		
+		    //Get Prediction ID from form. Will need to remove this string from the Prediction Code
+		    var pid = $('#prediction').val();
+
+		    var re = new RegExp("^" + pid + "_","");
+		
+		    for (var i=0,  s=scenarios.length; i < s; i++) {
+			    //score = scenarios[i].score;
+			    if (scenarios[i].status == 'returned'){
+				    txtColour = 'black';
+			    }
+			    else
+			    {
+				    txtColour = 'lightgray';
+			    }
+			
+			    arr.push(
+				    [
+					    i + 1,
+					    scenarios[i].code.replace(re,''),
+					    0,
+					    5,
+					    txtColour
+				    ]
+			    );
+			
+			    //Loop through items
+			    if (scenarios[i].items) {
+				    for (var n=0,  tot=scenarios[i].items.length; n < tot; n++) {
+					    arr.push(
+						    [
+							    i + 10000 + n,
+							    scenarios[i].items[n],
+							    i + 1,
+							    2,
+							    'orange'
+						    ]
+					    );
+				    }
+			    }
+		    }
+		
+		
+		    var data = google.visualization.arrayToDataTable(arr);
+
+		    var options = {
+		      format: 'explicit'
+		    };
+		
+		    chart = new google.visualization.WordTree(document.getElementById('scenariosChart'));
+		
+		    //chart.draw(data,{});
+		    chart.draw(data, options);
+	    };
+	
+	    function alertSuccess(text){
+		    $("#successmessage").text(text);
+		    $('.alert-normal-success').show();
+	    };
+	
+	    function alertError(text){
+		    $("#errormessage").text(text);
+		    $('.alert-normal-danger').show();
+	    };
+    </script>
+</body>
+</html>
